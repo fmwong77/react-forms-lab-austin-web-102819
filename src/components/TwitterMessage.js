@@ -1,11 +1,11 @@
 import React from "react";
 
 class TwitterMessage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      // maxChars: this.props.maxChars,
+      maxChars: props.maxChars,
       message: ""
     };
   }
@@ -13,8 +13,8 @@ class TwitterMessage extends React.Component {
   handleChange = event => {
     const remain = this.props.maxChars - event.target.value.length;
     this.setState({
-      message: event.target.value
-      // maxChars: remain
+      message: event.target.value,
+      maxChars: remain
     });
   };
 
@@ -31,9 +31,7 @@ class TwitterMessage extends React.Component {
           maxChars={this.props.maxChars}
         />
 
-        <div>
-          {this.props.maxChars - this.state.message.length} remaining characters
-        </div>
+        <div>{this.state.maxChars} remaining characters</div>
         <div>message: {this.state.message}</div>
       </div>
     );
